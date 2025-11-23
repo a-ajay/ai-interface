@@ -1,0 +1,123 @@
+{
+  "name": "ai-interaction-orchestrator",
+  "displayName": "AI Interaction Orchestrator",
+  "description": "Intelligent intermediary for optimizing LLM interactions with context slimming, prompt compression, and smart orchestration",
+  "version": "0.1.0",
+  "publisher": "ajay-ib",
+  "author": {
+    "name": "Ajay A"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "AI",
+    "Machine Learning",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "llm",
+    "prompt",
+    "optimization",
+    "copilot",
+    "claude",
+    "openai"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiOrchestrator.enhancePrompt",
+        "title": "Enhance Prompt",
+        "category": "AI Orchestrator"
+      },
+      {
+        "command": "aiOrchestrator.showDashboard",
+        "title": "Show Dashboard",
+        "category": "AI Orchestrator"
+      },
+      {
+        "command": "aiOrchestrator.clearCache",
+        "title": "Clear Cache",
+        "category": "AI Orchestrator"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "aiOrchestrator.enhancePrompt",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "AI Interaction Orchestrator",
+      "properties": {
+        "aiOrchestrator.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable AI Interaction Orchestrator"
+        },
+        "aiOrchestrator.compressionLevel": {
+          "type": "string",
+          "enum": [
+            "light",
+            "moderate",
+            "aggressive"
+          ],
+          "default": "moderate",
+          "description": "Prompt compression aggressiveness level"
+        },
+        "aiOrchestrator.tokenSavingsTarget": {
+          "type": "number",
+          "default": 30,
+          "minimum": 10,
+          "maximum": 70,
+          "description": "Target token savings percentage"
+        },
+        "aiOrchestrator.enableWebSync": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable periodic web synchronization of rules and model profiles"
+        },
+        "aiOrchestrator.cacheTimeout": {
+          "type": "number",
+          "default": 30,
+          "minimum": 5,
+          "maximum": 120,
+          "description": "Cache timeout in minutes"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "npx ts-node test/standalone.test.ts",
+    "test:all": "node test-runner.js",
+    "test:performance": "npx ts-node test/performance.test.ts",
+    "test:integration": "npx ts-node test/integration.test.ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.0",
+    "@types/uuid": "^10.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "gpt-tokenizer": "^2.1.2",
+    "uuid": "^9.0.0"
+  }
+}
